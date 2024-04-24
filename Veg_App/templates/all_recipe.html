@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% for i in messages %}
+<svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+  <symbol id="check-circle-fill" viewBox="0 0 16 16">
+    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+</svg>
+<div class="container d-flex justify-content-center mt-3">
+  <div id="customAlerts" class="alert alert-primary p-3 d-flex align-items-center" role="alert">
+      <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Success:" style="width: 24px; height: 24px;"><use xlink:href="#check-circle-fill"/></svg>
+      <div>{{i}}</div>
+  </div>
+</div>
+
+<script>
+  // Get the alert element
+  const alertElement = document.getElementById('customAlerts');
+
+  // Function to remove the alert after a specified time
+  function removeAlert() {
+      alertElement.remove();
+  }
+
+  // Set timeout to remove the alert after 5 seconds (5000 milliseconds)
+  setTimeout(removeAlert, 4000);
+</script>
+{% endfor %}
+
+<div class="container-fluid d-flex justify-content-center py-3">
+    <form class="d-flex">
+        <input class="form-control form-control-sm me-2" name="search" type="search" style="width: 250px;" placeholder="Search dish" aria-label="Search">
+        <button class="btn btn-outline-success btn-sm" type="submit">Search</button>
+    </form>
+</div>
+
+
+<table class = "table">
+    <thead>
+      <tr>
+        <th scope="col">S. No.</th>
+        <th scope="col">Dish name</th>
+        <th scope="col">Ingredients</th>
+        <th scope="col">Instruction</th>
+        <th scope="col">Time</th>
+        <th scope="col">Calories</th>
+        <th scope="col">Servings</th>
+        <th scope="col">Image</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in recipe %}
+      <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{i.name}}</td>
+        <td>{{i.ingredients}}</td>
+        <td>{{i.instruction}}</td>
+        <td>{{i.time_took}}</td>
+        <td>{{i.calory}}</td>
+        <td>{{i.serving}}</td>
+        <td>
+          <img src="/media/{{i.imagefile}}" style="height : 100px">
+        </td>
+        <td>
+          <a href="/delete/{{i.id}}/" class="btn btn-danger">Delete</a>
+        </td>
+        <td>
+          <a href='/update/{{i.id}}/' class="btn btn-success">Update</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  {% endblock %}

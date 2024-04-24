@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+{% include "nav.html" %}
+
+
+    <div class="container mt-5">
+        
+        <form class="col-6 mx-auto card p-3 shadow-lg" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+            <h2>Update Recipe</h2>
+            <div class="mb-3">
+              <label for="recipeName" class="form-label">Dish name</label>
+              <input name="name" value="{{recipe.name}}" required type="text" class="form-control" >
+            </div>
+            <div class="mb-3">
+              <label for="ingredients" class="form-label">Ingredients</label>
+              <textarea name="ingredients" required class="form-control">{{recipe.ingredients}}</textarea>
+            </div>
+            <div class="mb-3">
+              <label for="instruction" class="form-label">Instruction</label>
+              <textarea name="instruction" required class="form-control">{{recipe.instruction}}</textarea>
+            </div>
+            <div class="mb-3">
+              <label for="time_took" class="form-label">Time</label>
+              <input name="time_took" value="{{recipe.time_took}}" required type="text" class="form-control" >
+            </div>
+            <div class="mb-3">
+              <label for="calory" class="form-label">Calories</label>
+              <input name="calory" value="{{recipe.calory}}" required type="text" class="form-control" >
+            </div>
+            <div class="mb-3">
+              <label for="serving" class="form-label">Servings</label>
+              <input name="serving" value="{{recipe.serving}}" required type="text" class="form-control" >
+            </div>
+            <div class="mb-3">
+                <label for="recipeImage" class="form-label">Recipe Image</label>
+                <input name="imagefile" type="file" class="form-control" >
+              </div>
+            
+            <button type="Update" class="btn btn-success">Update Recipe</button>
+          </form>
+        
+
+    </div>
+
+
+{% endblock %}

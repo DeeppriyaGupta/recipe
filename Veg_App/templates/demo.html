@@ -1,0 +1,21 @@
+{% block content %}
+
+{{data}}
+<hr>
+{% for i in data %}
+{{forloop.counter}}
+<p>{{i.name}}</p>
+
+{% if i.age > 21 %} 
+
+   <p style="background:green">{{i.age}}</p> 
+    
+{% else %}
+<p style="background:red">{{i.age}}</p> 
+{% endif %}
+
+{% endfor %}
+
+
+
+{% endblock %}
